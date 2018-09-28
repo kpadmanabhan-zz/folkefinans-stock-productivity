@@ -27,7 +27,7 @@ namespace Folkefinans.StockProductivity
             app.UseCookieAuthentication(new CookieAuthenticationOptions {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
-                //ExpireTimeSpan = TimeSpan.FromMinutes(10),
+                ExpireTimeSpan = TimeSpan.FromMinutes(20),
                 Provider = new CookieAuthenticationProvider {
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                         validateInterval: TimeSpan.FromMinutes(30),

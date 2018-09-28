@@ -218,6 +218,8 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="StockDetails\EnterStockDetails.aspx" />
+    <Content Include="StockDetails\ViewCalculatedResult.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -374,6 +376,20 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="StockDetails\EnterStockDetails.aspx.cs">
+      <DependentUpon>EnterStockDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StockDetails\EnterStockDetails.aspx.designer.cs">
+      <DependentUpon>EnterStockDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StockDetails\ViewCalculatedResult.aspx.cs">
+      <DependentUpon>ViewCalculatedResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StockDetails\ViewCalculatedResult.aspx.designer.cs">
+      <DependentUpon>ViewCalculatedResult.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

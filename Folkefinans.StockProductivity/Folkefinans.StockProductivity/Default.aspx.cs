@@ -11,21 +11,19 @@ namespace Folkefinans.StockProductivity
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!HttpContext.Current.User.Identity.IsAuthenticated) {
+                Response.Redirect(@"Account\Login.aspx");
+            }
         }
 
         protected void btnEnterStockDetails_Click(object sender, EventArgs e)
         {
-            if (!HttpContext.Current.User.Identity.IsAuthenticated) {
-                Response.Redirect(@"Account\Login.aspx");
-            }
+            Response.Redirect(@"StockDetails\EnterStockDetails.aspx");
         }
 
         protected void btnViewCalculatedResult_Click(object sender, EventArgs e)
         {
-            if (!HttpContext.Current.User.Identity.IsAuthenticated) {
-                Response.Redirect(@"Account\Login.aspx");
-            }
+            Response.Redirect(@"StockDetails\ViewCalculatedResult.aspx");
         }
     }
 }
