@@ -16,11 +16,11 @@
                 <asp:TableCell runat="server">Price</asp:TableCell>
                 <asp:TableCell runat="server">
                     <asp:TextBox runat="server" ID="txtPrice"></asp:TextBox>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator4"
+                    <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator4"
                         ControlToValidate="txtYears" runat="server"
                         ErrorMessage="Only decimals allowed"
                         ValidationExpression="^[0-9]([.,][0-9]{1,2})?$">
-                    </asp:RegularExpressionValidator>
+                    </asp:RegularExpressionValidator>--%>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow runat="server" Height="40">
@@ -38,11 +38,11 @@
                 <asp:TableCell runat="server">Percentage</asp:TableCell>
                 <asp:TableCell runat="server">
                     <asp:TextBox runat="server" ID="txtPercentage"></asp:TextBox>%
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2"
+                    <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator2"
                         ControlToValidate="txtYears" runat="server"
                         ErrorMessage="Only decimals allowed"
                         ValidationExpression="^[0-9]([.,][0-9]{1,2})?$">
-                    </asp:RegularExpressionValidator>
+                    </asp:RegularExpressionValidator>--%>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow runat="server" Height="40">
