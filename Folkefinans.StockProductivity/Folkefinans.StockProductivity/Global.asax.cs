@@ -18,6 +18,17 @@ namespace Folkefinans.StockProductivity
                 name: "CalculateStock",
                 routeTemplate: "api/{controller}"
                 );
+
+            //RouteTable.Routes.MapHttpRoute(
+            //    name: "StockResultsOverview",
+            //    routeTemplate: "api/{controller}/{action}"
+            //    );
+
+            RouteTable.Routes.MapHttpRoute(
+                name: "StockResultsDetails",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new {id = RouteParameter.Optional}
+                );
         }
     }
 }

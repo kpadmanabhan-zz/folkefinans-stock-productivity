@@ -13,16 +13,11 @@ namespace Folkefinans.StockProductivity.Controller
     {
         private const string jsonPath = @"~/App_Data/StockDetailsList.json";
 
+        [HttpPost]
         // POST api/<controller>
         public Models.StockDetails Post([FromBody]Models.StockDetailsModel inputStockDetails)
         {
-            var storedStockDetailsJson = File.ReadAllText(System.Web.HttpContext.Current.Server.MapPath(jsonPath));
-            var storedStockDetailsList = JsonConvert.DeserializeObject<Models.StockDetailsList>(storedStockDetailsJson);
-
-            if (storedStockDetailsList == null) {
-                //First time
-                storedStockDetailsList = new Models.StockDetailsList();
-            }
+            var storedStockDetailsList = ReadStockDetailsJson();
 
             var stockDetails = new Models.StockDetails {
                 Id = storedStockDetailsList.StockDetails.Count + 1,
@@ -41,6 +36,43 @@ namespace Folkefinans.StockProductivity.Controller
             File.WriteAllText(System.Web.HttpContext.Current.Server.MapPath(jsonPath), json);
 
             return stockDetails;
+        }
+
+        [HttpGet]
+        public List<Models.StockDetailsModel> GetAllStocks()
+        {
+            var storedStockDetailsList = ReadStockDetailsJson();
+
+            return storedStockDetailsList.StockDetails
+                .Select(x => new Models.StockDetailsModel {
+                    Id = x.Id,
+                    StockName = x.StockName,
+                    Price = x.Price,
+                    Quantity = x.Quantity,
+                    Percentage = x.Percentage,
+                    Years = x.Years
+                }).ToList();
+        }
+
+        [HttpGet]
+        public Models.StockDetails GetStockDetails(int id)
+        {
+            var storedStockDetailsList = ReadStockDetailsJson();
+
+            return storedStockDetailsList.StockDetails.FirstOrDefault(x => x.Id == id);
+        }
+
+        private Models.StockDetailsList ReadStockDetailsJson()
+        {
+            var storedStockDetailsJson = File.ReadAllText(System.Web.HttpContext.Current.Server.MapPath(jsonPath));
+            var storedStockDetailsList = JsonConvert.DeserializeObject<Models.StockDetailsList>(storedStockDetailsJson);
+
+            if (storedStockDetailsList == null) {
+                //First time
+                storedStockDetailsList = new Models.StockDetailsList();
+            }
+
+            return storedStockDetailsList;
         }
 
         private void CalculateResults(Models.StockDetails stockDetails)
