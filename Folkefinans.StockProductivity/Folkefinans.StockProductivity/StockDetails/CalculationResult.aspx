@@ -10,23 +10,23 @@
                 <asp:TableHeaderCell>Field</asp:TableHeaderCell>
                 <asp:TableHeaderCell>Value</asp:TableHeaderCell>
             </asp:TableHeaderRow>
-            <asp:TableRow runat="server" Height="40">
+            <asp:TableRow runat="server">
                 <asp:TableCell runat="server">StockName</asp:TableCell>
                 <asp:TableCell runat="server" ID="tbcStockName"></asp:TableCell>
             </asp:TableRow>
-            <asp:TableRow runat="server" Height="40">
+            <asp:TableRow runat="server">
                 <asp:TableCell runat="server">Price</asp:TableCell>
                 <asp:TableCell runat="server" ID="tbcPrice"></asp:TableCell>
             </asp:TableRow>
-            <asp:TableRow runat="server" Height="40">
+            <asp:TableRow runat="server">
                 <asp:TableCell runat="server">Quantity</asp:TableCell>
                 <asp:TableCell runat="server" ID="tbcQuantity"></asp:TableCell>
             </asp:TableRow>
-            <asp:TableRow runat="server" Height="40">
+            <asp:TableRow runat="server">
                 <asp:TableCell runat="server">Percentage</asp:TableCell>
                 <asp:TableCell runat="server" ID="tbcPercentage"></asp:TableCell>
             </asp:TableRow>
-            <asp:TableRow runat="server" Height="40">
+            <asp:TableRow runat="server">
                 <asp:TableCell runat="server">Years</asp:TableCell>
                 <asp:TableCell runat="server" ID="tbcYears"></asp:TableCell>
             </asp:TableRow>
