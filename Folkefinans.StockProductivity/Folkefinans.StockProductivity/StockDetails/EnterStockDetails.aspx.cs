@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
+using Newtonsoft.Json;
 
 namespace Folkefinans.StockProductivity.StockDetails
 {
@@ -17,7 +19,7 @@ namespace Folkefinans.StockProductivity.StockDetails
 
         protected void btnCalculate_Click(object sender, EventArgs e)
         {
-            var stockDetails = new Models.StockDetails {
+            var stockDetails = new Models.StockDetailsModel {
                 StockName = txtStockName.Text,
                 Percentage = Convert.ToDecimal(txtPercentage.Text),
                 Price = Convert.ToDecimal(txtPrice.Text),
@@ -25,20 +27,26 @@ namespace Folkefinans.StockProductivity.StockDetails
                 Years = Convert.ToInt32(txtYears.Text)
             };
 
-            var x = CalculateAsync(stockDetails).GetAwaiter().GetResult();
+            var responseJson = CalculateAsync(stockDetails).GetAwaiter().GetResult();
+            var returnStockDetails = JsonConvert.DeserializeObject<Models.StockDetails>(responseJson);
+            Session["StockDetails"] = returnStockDetails;
+
+            Response.Redirect(@"/StockDetails/CalculationResult.aspx");
         }
 
-        private async Task<Uri> CalculateAsync(Models.StockDetails stockDetails)
+        private async Task<string> CalculateAsync(Models.StockDetailsModel stockDetails)
         {
             using (var client = new HttpClient()) {
                 client.BaseAddress = new Uri("http://localhost:50798");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = await client.PostAsJsonAsync("api/StockDetails", stockDetails);
+                var response = await client.PostAsJsonAsync("api/StockDetails", stockDetails).ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
 
-                return response.Headers.Location;
+                var responseJson = await response.Content.ReadAsStringAsync();
+                
+                return responseJson;
             }
         }
     }
