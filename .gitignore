@@ -6,3 +6,5 @@
 /Folkefinans.StockProductivity/Folkefinans.StockProductivity/bin
 /Folkefinans.StockProductivity/Folkefinans.StockProductivity/obj/Debug
 /Folkefinans.StockProductivity/Folkefinans.StockProductivity/App_Data
+*.user
+/Folkefinans.StockProductivity/packages
