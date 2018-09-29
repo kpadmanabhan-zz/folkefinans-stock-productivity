@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Abstractions;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using Folkefinans.StockProductivity.Providers;
 using Newtonsoft.Json;
 
 namespace Folkefinans.StockProductivity.Controller
@@ -12,6 +12,19 @@ namespace Folkefinans.StockProductivity.Controller
     public class StockDetailsController : ApiController
     {
         private const string jsonPath = @"~/App_Data/StockDetailsList.json";
+        private readonly IFileSystem fileSystem;
+        private readonly IPathProvider pathProvider;
+
+        public StockDetailsController(IFileSystem fileSystemObj, IPathProvider pathProviderObj)
+        {
+            fileSystem = fileSystemObj;
+            pathProvider = pathProviderObj;
+        }
+
+        public StockDetailsController():this(new FileSystem(), new ServerPathProvider())
+        {
+
+        }
 
         [HttpPost]
         // POST api/<controller>
@@ -33,7 +46,7 @@ namespace Folkefinans.StockProductivity.Controller
             storedStockDetailsList.StockDetails.Add(stockDetails);
 
             var json = JsonConvert.SerializeObject(storedStockDetailsList);
-            File.WriteAllText(System.Web.HttpContext.Current.Server.MapPath(jsonPath), json);
+            fileSystem.File.WriteAllText(pathProvider.MapPath(jsonPath), json);
 
             return stockDetails;
         }
@@ -64,7 +77,7 @@ namespace Folkefinans.StockProductivity.Controller
 
         private Models.StockDetailsList ReadStockDetailsJson()
         {
-            var storedStockDetailsJson = File.ReadAllText(System.Web.HttpContext.Current.Server.MapPath(jsonPath));
+            var storedStockDetailsJson = fileSystem.File.ReadAllText(pathProvider.MapPath(jsonPath));
             var storedStockDetailsList = JsonConvert.DeserializeObject<Models.StockDetailsList>(storedStockDetailsJson);
 
             if (storedStockDetailsList == null) {

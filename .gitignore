@@ -8,3 +8,5 @@
 /Folkefinans.StockProductivity/Folkefinans.StockProductivity/App_Data
 *.user
 /Folkefinans.StockProductivity/packages
+/Folkefinans.StockProductivity/Folkefinans.StockProductivity.Tests/bin/Debug
+/Folkefinans.StockProductivity/Folkefinans.StockProductivity.Tests/obj/Debug
