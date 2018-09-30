@@ -10,6 +10,7 @@ This is quite handy in web forms projects that need to make use of server api to
 
 3. In "View Calculated Result" page, detailed resuls table is populated using postback call. This could have alternatively been handled using ajax and jquery. 
 However, as these were not explicitly mentioned, relied on implementation using server postback.
+~~~~~~
 
 How I tested?
 ~~~~~~~~~~~~~
