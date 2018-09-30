@@ -33,6 +33,10 @@ namespace Folkefinans.StockProductivity.Tests
             // Arrange
             var inputStockDetailsModel = new Builder().CreateNew<StockDetailsModel>()
                 .With(x => x.StockName = "Test")
+                .And(x => x.Price = 2.00M)
+                .And(x => x.Quantity = 200)
+                .And(x => x.Percentage = 3.00M)
+                .And(x => x.Years = 2)
                 .Build();
 
             pathProviderMock.Setup(x => x.MapPath("~/App_Data/StockDetailsList.json")).Returns("TestJsonPath");
@@ -44,7 +48,11 @@ namespace Folkefinans.StockProductivity.Tests
             Assert.IsNotNull(result);
             Assert.AreEqual("Test", result.StockName);
             Assert.IsNotNull(result.StockResults);
-            Assert.AreEqual(2, result.StockResults.Count);
+            Assert.AreEqual(3, result.StockResults.Count);
+
+            Assert.AreEqual(400.00M, result.StockResults[0]);
+            Assert.AreEqual(412.00M, result.StockResults[1]);
+            Assert.AreEqual(424.36M, result.StockResults[2]);
         }
 
         [TestMethod]
